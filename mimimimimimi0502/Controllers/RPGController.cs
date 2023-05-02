@@ -30,8 +30,17 @@ namespace mimimimimimi0502.Controllers
 
             return result;
         }
-        
-        
+
+        [HttpPost]
+
+        public RPG Post(RPG rpg)
+        {
+            RPG result = null;
+
+            result = _service.Cteate(rpg);
+
+            return result;
+        }
         
     }
 }

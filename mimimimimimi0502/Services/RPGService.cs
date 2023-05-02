@@ -17,6 +17,21 @@ public class RPGService
         database.Add(new RPG(){id = 6,name = "Dd",lv = 80});
         database.Add(new RPG(){id = 7,name = "Re",lv = 999});
     }
+    
+    public List<RPG> List()
+    {
+        List<RPG> result = null;
+
+        var db  = from d in database
+            select d;
+
+        if (db.Any())
+        {
+            result = db.ToList();
+        }
+
+        return result;
+    }
 
 
     public RPG Get(int id)
@@ -31,6 +46,18 @@ public class RPGService
         {
             result = db.First();
         }
+
+        return result;
+    }
+    
+    //POST/CREATE  新增
+    public RPG Cteate(RPG rpg)
+    {
+        RPG result = null;
+
+        rpg.id = database.Max(x => x.id) + 1;  //修正id
+
+        database.Add(rpg);
 
         return result;
     }
