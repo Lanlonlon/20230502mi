@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using mimimimimimi0502.Services;
 
 namespace mimimimimimi0502.Controllers
 {
@@ -12,12 +13,20 @@ namespace mimimimimimi0502.Controllers
     public class RPGController : ControllerBase
     {
 
+        private RPGService _service;
+
+        public RPGController() //建構方法
+        {
+            _service = new RPGService();
+        }
+        
         [HttpGet]
-        public RPG Get()
+        [Route("{id}")]
+        public RPG Get(int id)
         {
             RPG result = null;
 
-            result = new RPG() { id = 0, name = "mi", lv = 999 };
+            result = _service.Get(id:id);
 
             return result;
         }
